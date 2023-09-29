@@ -2,7 +2,7 @@
 
 [Short description of the connector and its primary purpose.]
 
-`![Optional Image](path-to-image)`
+`![Optional Logo Image](path-to-image)`
 
 This connector is built using the [Rust Data Connector SDK](https://github.com/hasura/ndc-hub#rusk-sdk) and implements the [Data Connector Spec](https://github.com/hasura/ndc-spec).
 
