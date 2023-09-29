@@ -1,4 +1,4 @@
-# [Connector Name] Connector
+# [ConnectorName] Connector
 
 [Short description of the connector and its primary purpose.]
 
