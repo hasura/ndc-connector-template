@@ -27,29 +27,39 @@ Instructions for Hasura users to deploy and use the connector:
 1. [Step-by-step instructions for deploying the connector.]
 2. [Instructions for integrating the connector with a Hasura project.]
 
-## Usage
-
-[Detailed usage instructions, including any specific configurations, endpoints, or methods.]
-
 ## Example
 
 [Optional: Provide an example or use-case scenario for the connector.]
 
+## Documentation
+
+View the full documentation for the connector [here](./docs/index.md).
+
+## Usage
+
+[If short enough include here directly. Otherwise link to the usage documentation as per below.]
+
+View the usage documentation for the connector [here](./docs/usage/index.md).
+
 ## Service Authentication
 
-[Instructions for setting up authentication for the connector.]
+[If short enough include here directly. Otherwise link to the auth documentation as per below.]
+
+View the service authentication documentation for the connector [here](./docs/authentication.md).
 
 ## Limitations
 
-[List of known limitations or constraints of the connector.]
+[If short enough include here directly. Otherwise link to the limitations documentation as per below.]
+
+View the limitations documentation for the connector [here](./docs/limitations.md).
 
 ## Development
 
-[Instructions for developers who wish to contribute or build upon the connector.]
+View the development documentation for the connector [here](./docs/development.md).
 
 ## Debugging Issues
 
-[Steps or tips for debugging common issues with the connector.]
+View the debugging documentation for the connector [here](./docs/debugging.md).
 
 ## Additional Sections
 
