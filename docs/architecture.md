@@ -2,4 +2,4 @@
 
 [Detailed description of the architecture of the connector]
 
-[ndc-postgres example](https://github.com/hasura/ndc-postgres/blob/main/docs/architecture.md)
+[[ndc-postgres architecture example]](https://github.com/hasura/ndc-postgres/blob/main/docs/architecture.md)

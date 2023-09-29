@@ -2,6 +2,8 @@
 
 Instructions for developers who wish to contribute or build upon the connector:
 
+[[ndc-postgres development example]](https://github.com/hasura/ndc-postgres/blob/main/docs/development.md)
+
 ### Build
 
 Prerequisites:
