@@ -33,7 +33,7 @@ Instructions for Hasura users to deploy and use the connector:
 
 ## Documentation
 
-View the full documentation for the connector [here](./docs/index.md).
+(If required) View the full documentation for the connector [here](./docs/index.md).
 
 ## Additional Sections
 
