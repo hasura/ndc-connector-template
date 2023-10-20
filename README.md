@@ -41,8 +41,7 @@ Check out our [contributing guide](./docs/contributing.md) for more details.
 
 ## License
 
-The [connectorName] connector is available under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-(Apache-2.0).
+The [connectorName] connector is available under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## Additional Sections
 

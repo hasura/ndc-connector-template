@@ -1,4 +1,4 @@
-# [connectorName] Security
+# Security
 
 ## Reporting Vulnerabilities
 
