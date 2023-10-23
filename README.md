@@ -2,6 +2,12 @@
 
 `![Optional Logo Image](path-to-image)`
 
+[![Docs](https://img.shields.io/badge/docs-v3.x-brightgreen.svg?style=flat)](https://hasura.io/docs/3.0/latest/connectors/postgresql/)
+[![ndc-hub](https://img.shields.io/badge/ndc--hub-postgres-blue.svg?style=flat)](https://hasura.io/connectors/ndc-postgres)
+[![License](https://img.shields.io/badge/license-Apache--2.0-purple.svg?style=flat)](LICENSE.txt)
+[![Status](https://img.shields.io/badge/status-alpha-yellow.svg?style=flat)](./readme.md)
+
+
 [Short description of the connector and its primary purpose.]
 
 This connector is built using the [Rust Data Connector SDK](https://github.com/hasura/ndc-hub#rusk-sdk) and implements the [Data Connector Spec](https://github.com/hasura/ndc-spec).

@@ -1,6 +1,6 @@
 # [connectorName] Documentation
 
-[connectorName] is a [Hasura](https://hasura.io/) connector for [connectorDescription].
+[connectorName] is a [Hasura](https://hasura.io/) Native Data Connector.
 
 - [Usage](./usage/index.md)
   - [Querying (for example)](./usage/querying.md)
