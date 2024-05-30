@@ -38,11 +38,9 @@ row -->
 | Table Relationships             | ✅ ❌     |       |
 | Views                           | ✅ ❌     |       |
 | Remote Relationships            | ✅ ❌     |       |
-| Custom Fields                   | ✅ ❌     |       |
 | Mutations                       | ✅ ❌     |       |
 | Distinct                        | ✅ ❌     |       |
 | Enums                           | ✅ ❌     |       |
-| Naming Conevntions              | ✅ ❌     |       |
 | Default Values                  | ✅ ❌     |       |
 | User-defined Functions          | ✅ ❌     |       |
 
@@ -60,7 +58,6 @@ row -->
 | Views                           | ✅ ❌     |       |
 | Distinct                        | ✅ ❌     |       |
 | Remote Relationships            | ✅ ❌     |       |
-| Custom Fields                   | ✅ ❌     |       |
 | Mutations                       | ✅ ❌     |       |
 -->
 
