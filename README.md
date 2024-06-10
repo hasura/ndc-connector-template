@@ -82,69 +82,144 @@ row -->
 
 [Prerequisites or recommended steps before using the connector.]
 
-1. Create a [Hasura Cloud account](https://console.hasura.io)
-2. Install the [CLI](https://hasura.io/docs/3.0/cli/installation/)
-3. [Create a project](https://hasura.io/docs/3.0/getting-started/create-a-project)
+1. The [DDN CLI](https://hasura.io/docs/3.0/cli/installation) and [Docker](https://docs.docker.com/engine/install/) installed
+2. A [supergraph](https://hasura.io/docs/3.0/getting-started/init-supergraph)
+3. A [subgraph](https://hasura.io/docs/3.0/getting-started/init-subgraph)
 <!-- TODO: add anything connector-specific here -->
 
-## Using the connector
+The steps below explain how to Initialize and configure a connector for local development. You can learn how to deploy a
+connector — after it's been configured — [here](https://hasura.io/docs/3.0/getting-started/deployment/deploy-a-connector).
 
-To use the [NAME] connector, follow these steps in a Hasura project:
+## Using the [NAME] connector
 
-1. Add the connector:
+### Step 1: Authenticate your CLI session
 
-   ```bash
-   ddn add connector-manifest <connector-name> --subgraph app --hub-connector <connector> --type cloud
-   ```
+```bash
+ddn auth login
+```
 
-   <!-- TODO: In the snippet above, replace `connector-name` with a connector-specific recommendation, such as
-   `pg-connector` and `connector` with the name of the connector as found on the connector hub -->
+### Step 2: Initialize the connector
 
-   In the snippet above, we've used the subgraph `app` as it's available by default; however, you can change this
-   value to match any [subgraph](https://hasura.io/docs/3.0/project-configuration/subgraphs) which you've created in your project.
+```bash
+ddn connector init <connector-name>  --subgraph my_subgraph  --hub-connector hasura/<connector>
+```
 
-2. Add your connection URI:
+  <!-- TODO: In the snippet above, replace `connector-name` with a connector-specific recommendation, such as
+  `pg-connector` and `connector` with the name of the connector as found on the connector hub -->
 
-   Open your project in your text editor and open the `base.env.yaml` file in the root of your project. Then, add the
-   `<CONNECTOR_NAME>_CONNECTION_URI` environment variable with the connection string under the `app` subgraph:
+In the snippet above, we've used the subgraph `my_subgraph` as an example; however, you should change this
+value to match any subgraph which you've created in your project.
 
-   ```yaml
-   supergraph: {}
-   subgraphs:
-     app:
-       <CONNECTOR_NAME>_CONNECTION_URI: "<YOUR_CONNECTION_URI>"
-   ```
+### Step 3: Modify the connector's port
 
-   Next, update your `/app/<CONNECTOR_NAME>/connector/<CONNECTOR_NAME>.build.hml` file to reference this new environment
-   variable:
+When you initialized your connector, the CLI generated a set of configuration files, including a Docker Compose file for
+the connector. Typically, connectors default to port `8080`. Each time you add a connector, we recommend incrementing the published port by one to avoid port collisions.
 
-   ```yaml
-   # other configuration above
-   CONNECTION_URI:
-     valueFromEnv: <CONNECTOR_NAME>_CONNECTION_URI
-   ```
+As an example, if your connector's configuration is in `my_subgraph/connector/<connector-name>/dokcer-compose.<connector-name>.yaml`, you can modify the published port to
+reflect a value that isn't currently being used by any other connectors:
 
-    <!-- TODO: Update all <CONNECTOR_NAME> refs in this step to the name you used in step 1's snippet -->
+```yaml
+ports:
+  - mode: ingress
+    target: 8080
+    published: "8082"
+    protocol: tcp
+```
 
-   Notice, when we use an environment variable, we must change the key to `valueFromEnv` instead of `value`. This tells
-   Hasura DDN to look for the value in the environment variable we've defined instead of using the value directly.
+  <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 -->
 
-3. Update the connector manifest and the connector link
+### Step 4: Add environment variables
 
-   These two steps will (1) allow Hasura to introspect your data source and complete the configuration and (2) deploy the
-   connector to Hasura DDN:
+Now that our connector has been scaffolded out for us, we need to provide a connection string so that the data source can be introspected and the
+boilerplate configuration can be taken care of by the CLI.
 
-   ```bash
-   ddn update connector-manifest <CONNECTOR_NAME>
-   ```
+The CLI has provided an `.env.local` file for our connector in the `my_subgraph/connector/<connector-name>` directory. We can add a key-value pair
+of `CONNECTION_URI` along with the connection string itself to this file, and our connector will use this to connect to our database.
 
-   ```bash
-   ddn update connector-link <CONNECTOR_NAME>
-   ```
+**Note that `CONNECTION_URI` may not always be a required key. You should consult the `supportedEnvironmentVariables` array in your
+`.hasura-connector/connect-metadata.yaml` file to determine what's required.**
 
-    <!-- TODO: As before, update <CONNECTOR_NAME> to match step 1 -->
+The file, after adding the `CONNECTION_URI`, should look like this example:
 
-4. [Connector-specific steps]
+```env
+OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://local.hasura.dev:4317
+OTEL_SERVICE_NAME=my_subgraph_<connector-name>
+CONNECTION_URI=<connection-uri>
+```
+
+  <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 — additionally, feel free to call out the specific
+  variables which are required above -->
+
+### Step 5: Introspect your data source
+
+With the connector configured, we can now use the CLI to introspect our database and create a source-specific configuration file for our connector.
+
+```bash
+ddn connector introspect --connector my_subgraph/connector<connector-name>/connector.yaml
+```
+
+  <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 -->
+
+### Step 6. Create the Hasura metadata
+
+Hasura DDN uses a concept called "connector linking" to take [NDC-compliant](https://github.com/hasura/ndc-spec)
+configuration JSON files for a data connector and transform them into an `hml` (Hasura Metadata Language) file as a
+[`DataConnectorLink` metadata object](https://hasura.io/docs/3.0/supergraph-modeling/data-connectors#dataconnectorlink-dataconnectorlink).
+
+Basically, metadata objects in `hml` files define our API.
+
+First we need to create this `hml` file with the `connector-link add` command and then convert our configuration files
+into `hml` syntax and add it to this file with the `connector-link update` command.
+
+Let's name the `hml` file the same as our connector, `<connector-name>`:
+
+```bash
+ddn connector-link add <connector-name> --subgraph my_subgraph
+```
+
+The new file is scaffolded out at `my_subgraph/metadata/<connector-name>/<connector-name>.hml`.
+
+### Step 7. Update the environment variables
+
+The generated file has two environment variables — one for reads and one for writes — that you'll need to add to your subgraph's `.env.my_subgraph` file.
+Each key is prefixed by the subgraph name, an underscore, and the name of the connector. Ensure the port value matches what is published in your connector's docker compose file.
+
+As an example:
+
+```env
+MY_SUBGRAPH_<CONNECTOR-NAME>_READ_URL=http://local.hasura.dev:<port>
+MY_SUBGRAPH_<CONNECTOR-NAME>_WRITE_URL=http://local.hasura.dev:<port>
+```
+
+These values are for the connector itself and utilize `local.hasura.dev` to ensure proper resolution within the docker container.
+
+  <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 -->
+
+### Step 8. Start the connector's Docker Compose
+
+Let's start our connector's Docker Compose file by running the following from inside the connector's subgraph:
+
+```bash
+docker compose -f docker-compose.<connector-name>.yaml up
+```
+
+  <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 -->
+
+### Step 9. Update the new `DataConnectorLink` object
+
+Finally, now that our `DataConnectorLink` has the correct environment variables configured for the connector,
+we can run the update command to have the CLI look at the configuration JSON and transform it to reflect our database's
+schema in `hml` format. In a new terminal tab, run:
+
+```bash
+ddn connector-link update <connector-name> --subgraph my_subgraph
+```
+
+After this command runs, you can open your `my_subgraph/metadata/<connector-name>.hml` file and see your metadata completely
+scaffolded out for you 🎉
+
+### Step 10. [Connector-specific steps]
+
 <!-- TODO: If there are connector-specific configuration steps, such as adding env vars or anything of the like, add
 these steps here. -->
 
