@@ -128,14 +128,18 @@ ports:
 
   <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 -->
 
-### Step 4: Add the connection URI
+### Step 4: Add environment variables
 
-Now that our connector has been scaffolded out for us, we need to provide a connection string so that the data source can be introspected and the boilerplate
-configuration can be taken care of by the CLI.
+Now that our connector has been scaffolded out for us, we need to provide a connection string so that the data source can be introspected and the
+boilerplate configuration can be taken care of by the CLI.
 
-The CLI has provided an `.env.local` file for our connector in the `my_subgraph/connector/<connector-name>` directory. We can add a key-value pair of `CONNECTION_URI` along with the
-connection string itself to this file and our connector will use this to connect to our database. The file, after adding the `CONNECTION_URI` should look like this
-example:
+The CLI has provided an `.env.local` file for our connector in the `my_subgraph/connector/<connector-name>` directory. We can add a key-value pair
+of `CONNECTION_URI` along with the connection string itself to this file, and our connector will use this to connect to our database.
+
+**Note that `CONNECTION_URI` may not always be a required key. You should consult the `supportedEnvironmentVariables` array in your
+`.hasura-connector/connect-metadata.yaml` file to determine what's required.**
+
+The file, after adding the `CONNECTION_URI`, should look like this example:
 
 ```env
 OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://local.hasura.dev:4317
@@ -143,7 +147,8 @@ OTEL_SERVICE_NAME=my_subgraph_<connector-name>
 CONNECTION_URI=<connection-uri>
 ```
 
-  <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 -->
+  <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 — additionally, feel free to call out the specific
+  variables which are required above -->
 
 ### Step 5: Introspect your data source
 
