@@ -101,7 +101,7 @@ ddn auth login
 ### Step 2: Initialize the connector
 
 ```bash
-ddn connector init <connector-name>  --subgraph my_subgraph  --hub-connector hasura/<connector>
+ddn connector init <connector-name>  --subgraph my_subgraph/subgraph.yaml  --hub-connector hasura/<connector>
 ```
 
   <!-- TODO: In the snippet above, replace `connector-name` with a connector-specific recommendation, such as
@@ -115,7 +115,7 @@ value to match any subgraph which you've created in your project.
 When you initialized your connector, the CLI generated a set of configuration files, including a Docker Compose file for
 the connector. Typically, connectors default to port `8080`. Each time you add a connector, we recommend incrementing the published port by one to avoid port collisions.
 
-As an example, if your connector's configuration is in `my_subgraph/connector/<connector-name>/dokcer-compose.<connector-name>.yaml`, you can modify the published port to
+As an example, if your connector's configuration is in `my_subgraph/connector/<connector-name>/compose.yaml`, you can modify the published port to
 reflect a value that isn't currently being used by any other connectors:
 
 ```yaml
@@ -155,7 +155,7 @@ CONNECTION_URI=<connection-uri>
 With the connector configured, we can now use the CLI to introspect our database and create a source-specific configuration file for our connector.
 
 ```bash
-ddn connector introspect --connector my_subgraph/connector<connector-name>/connector.yaml
+ddn connector introspect --connector my_subgraph/connector/<connector-name>/connector.local.yaml
 ```
 
   <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 -->
@@ -174,14 +174,14 @@ into `hml` syntax and add it to this file with the `connector-link update` comma
 Let's name the `hml` file the same as our connector, `<connector-name>`:
 
 ```bash
-ddn connector-link add <connector-name> --subgraph my_subgraph
+ddn connector-link add <connector-name> --subgraph my_subgraph/subgraph.yaml
 ```
 
 The new file is scaffolded out at `my_subgraph/metadata/<connector-name>/<connector-name>.hml`.
 
 ### Step 7. Update the environment variables
 
-The generated file has two environment variables — one for reads and one for writes — that you'll need to add to your subgraph's `.env.my_subgraph` file.
+The generated file has two environment variables — one for reads and one for writes — that you'll need to add to your subgraph's `.env.my_subgraph.local` file.
 Each key is prefixed by the subgraph name, an underscore, and the name of the connector. Ensure the port value matches what is published in your connector's docker compose file.
 
 As an example:
@@ -200,7 +200,7 @@ These values are for the connector itself and utilize `local.hasura.dev` to ensu
 Let's start our connector's Docker Compose file by running the following from inside the connector's subgraph:
 
 ```bash
-docker compose -f docker-compose.<connector-name>.yaml up
+docker compose -f compose.yaml up
 ```
 
   <!-- TODO: As before, update <CONNECTOR_NAME> to match step 2 -->
@@ -212,7 +212,7 @@ we can run the update command to have the CLI look at the configuration JSON and
 schema in `hml` format. In a new terminal tab, run:
 
 ```bash
-ddn connector-link update <connector-name> --subgraph my_subgraph
+ddn connector-link update <connector-name> --subgraph my_subgraph/subgraph.yaml --env-file my_subgraph/.env.my_subgraph.local
 ```
 
 After this command runs, you can open your `my_subgraph/metadata/<connector-name>.hml` file and see your metadata completely
