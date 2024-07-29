@@ -1,7 +1,7 @@
 <!-- TODO: Hiya, Connector Author! Throughout this template, you'll find TODO comments to help guide you and ensure
 you've updated this README to be ready for users. If you have questions, shout at the docs team on #team-docs in Slack -->
 
-# [ConnectorName] Connector
+# [ConnectorName] Data Connector
 
 `![Optional Logo Image](path-to-image)`
 
