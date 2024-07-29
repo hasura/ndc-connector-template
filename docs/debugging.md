@@ -1,4 +1,4 @@
-# Debugging the [connectorName] Connector
+# Debugging the [connectorName] Data Connector
 
 [Specific information for debugging the connectorName connector.]
 

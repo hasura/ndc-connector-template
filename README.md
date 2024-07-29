@@ -16,6 +16,18 @@ This connector is built using the [Rust Data Connector SDK](https://github.com/h
 
 - [Connector information in the Hasura Hub](https://hasura.io/connectors/[connector-name])
 - [Hasura V3 Documentation](https://hasura.io/docs/3.0)
+- [Usage](docs/usage/index.md)
+- [Querying (for example)](docs/usage/querying.md)
+- [Architecture](docs/architecture.md)
+- [Development](docs/development.md)
+- [Code of Conduct](docs/code-of-conduct.md)
+- [Contributing](docs/contributing.md)
+- [Authentication](docs/authentication.md)
+- [Debugging](docs/debugging.md)
+- [Limitations](docs/limitations.md)
+- [Production](docs/production.md)
+- [Support](docs/support.md)
+- [Security](docs/security.md)
 - [Additional relevant links]
 
 ## Features
