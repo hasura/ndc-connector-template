@@ -1,4 +1,4 @@
-# General Architecture of the [connectorName] Connector
+# General Architecture of the [connectorName] Data Connector
 
 [Detailed description of the architecture of the connector]
 

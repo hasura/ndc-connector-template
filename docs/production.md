@@ -1,4 +1,4 @@
-# [connectorName] Connector in Production
+# [connectorName] Data Connector in Production
 
 [Information about deploying and using the [connectorName] connector in production.]
 

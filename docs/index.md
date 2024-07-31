@@ -1,4 +1,4 @@
-# [connectorName] Documentation
+# [connectorName] Data Connector Documentation
 
 [connectorName] is a [Hasura](https://hasura.io/) Native Data Connector.
 

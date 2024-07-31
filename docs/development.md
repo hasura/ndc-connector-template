@@ -1,4 +1,4 @@
-# [connectorName] Development
+# [connectorName] Data Connector Development
 
 Instructions for developers who wish to contribute or build upon the connector:
 
