@@ -18,6 +18,7 @@ This connector is built using the [Rust Data Connector SDK](https://github.com/h
 - [Hasura V3 Documentation](https://hasura.io/docs/3.0)
 
 Docs for the [connectorName] data connector:
+
 - [Usage](./docs/usage/index.md)
   - [Querying (for example)](./docs/usage/querying.md)
 - [Architecture](./docs/architecture.md)
@@ -236,6 +237,58 @@ scaffolded out for you 🎉
 
 <!-- TODO: If there are connector-specific configuration steps, such as adding env vars or anything of the like, add
 these steps here. -->
+
+### Step 11. Deploy your connector
+
+Connectors can be deployed to Hasura DDN or, if you choose, your own infrastructure.
+
+#### Deploy [ConnectorName] to Hasura DDN
+
+Prepare a `env.cloud` file for the connector. This should utilize whichever environment variables, such as a connection
+string, you intend to use with your deployed supergraph. As an example:
+
+```env
+CONNECTION_URI=<database-connection-uri>
+```
+
+Then, run the following command taking care to update the referenced paths to match your project structure:
+
+```sh
+ddn connector build create \
+  --connector my_subgraph/connector/my_connector/connector.cloud.yaml \
+  --target-env-file my_subgraph/.env.my_subgraph.cloud \
+  --target-subgraph my_subgraph/subgraph.yaml \
+  --target-connector-link my_connector
+```
+
+This will deploy your connector and update your project's metadata.
+
+#### Deploy [ConnectorName] to your own infrastructure
+
+As a connector is an HTTP service built using Docker, you can host your connectors anywhere Docker containers can be
+hosted.
+
+On your own self- or cloud-hosted infrastructure, create a new build from within the connector's directory:
+
+```sh
+docker compose build
+```
+
+Then, bring the connector up:
+
+```sh
+docker compose up -d
+```
+
+And verify the connector is running:
+
+```sh
+docker ps
+```
+
+You'll need to follow whatever steps are necessary to expose your connector's port so that Hasura DDN can connect to it.
+Additionally, you'll need to update any cloud environment variables that your deployed supergraph needs from this
+connector (e.g., `MY_SUBGRAPH_MY_CONNECTOR_READ_URL`) to match your deployed connector's endpoint.
 
 ## Example
 
