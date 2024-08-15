@@ -133,13 +133,16 @@ ddn auth login
 ddn connector init <connector-name> -i
 ```
 
-### Step 3: Choose the [connectorName] from the list
+[//]: # (### Step 3: Choose the [connectorName] from the list)
 
-### Step 4 Choose a name for the connector
+[//]: # ()
+[//]: # (### Step 4 Choose a name for the connector)
 
-### Step 5: Choose a port for the connector
+[//]: # ()
+[//]: # (### Step 5: Choose a port for the connector)
 
-### Step 6: Provide the [name] env var(s) for the connector
+[//]: # ()
+[//]: # (### Step 6: Provide the [name] env var&#40;s&#41; for the connector)
 
 
 ## Documentation
