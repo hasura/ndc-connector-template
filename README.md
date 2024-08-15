@@ -1,17 +1,17 @@
-Hiya, Connector Author 👋
+_Hiya, Connector Author 👋_
 
-Use these handy markdown template pages to generate documentation for your open source Hasura Data Connector.
+_Use these handy markdown template pages to generate documentation for your open source Hasura Data Connector._
 
-It's designed to help your users get going as quickly as possible with your connector and is comprised of this 
-README.md and a number of sub-documents in the `docs` directory. You should edit them as you see fit. 
+_It's designed to help your users get going as quickly as possible with your connector and is comprised of this 
+README.md and a number of sub-documents in the `docs` directory. You should edit them as you see fit._ 
 
-Look out for the inline comments, which aren't rendered, to help you fill in the blanks.
+_Look out for the inline comments, which aren't rendered, to help you fill in the blanks._
 
-To list your connector on the Hasura Connector Hub, you should make a PR to the 
-[Hasura NDC Hub](https://github.com/hasura/ndc-hub) repo.
+_To list your connector on the Hasura Connector Hub, you should make a PR to the 
+[Hasura NDC Hub](https://github.com/hasura/ndc-hub) repo._
 
-Happy documenting! 🚀
-`#deleteme`
+_Happy documenting! 🚀_
+`#deleteme!!!`
 
 # [ConnectorName] Data Connector
 
