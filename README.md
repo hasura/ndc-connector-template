@@ -129,7 +129,8 @@ ddn auth login
 
 ### Step 2: Configure the connector
 
-Once you have an initialized supergraph and subgraph, run the initialization command in interactive mode:
+Once you have an initialized supergraph and subgraph, run the initialization command in interactive mode while 
+providing a name for the connector in the prompt:
 
 ```bash
 ddn connector init <connector-name> -i
@@ -138,23 +139,36 @@ ddn connector init <connector-name> -i
 #### Step 2.1: Choose the [connectorName] from the list
 <!-- Let your users know which name to choose from the list of connectors -->
 
-#### Step 2.2 Choose a name for the connector
-<!-- Provide a good default name for your connector -->
-
-#### Step 2.3: Choose a port for the connector
+#### Step 2.2: Choose a port for the connector
 
 The CLI will ask for a specific port to run the connector on. Choose a port that is not already in use or use the 
 default suggested port.
 
-#### Step 2.4: Provide the [name] env var(s) for the connector
+#### Step 2.3: Provide the [name] env var(s) for the connector
 
-<!-- Instruct your users on how to provide the necessary environment variables that the connector requires. Include-->
+<!-- Instruct your users on how to provide the necessary environment variables that the connector requires. Include 
+where to find them -->
 
 | Name          | Description                                                                                                                                       |
 |---------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | ConnectionURI | The connection string for the SuperBlazingFastDB™ database. You can find this on your [connection tab](http://www.example.com/) of your instance. |
 | AnotherVar    | Etc...                                                                                                                                            |
   
+## Step 3: Introspect the connector
+
+<!-- Tell your users what config files this step will generate.-->
+
+```bash
+ddn connector introspect <connector-name>
+```
+
+## Step 4: Add your resources
+
+<!-- Tell your users what metadata objects will be created from this command.-->
+
+```bash
+ddn connector-link add-resources <connector-name>
+```
 
 ## Documentation
 <!-- TODO: Either on GitHub in this repo or on your own site -->
