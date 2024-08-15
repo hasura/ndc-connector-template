@@ -1,6 +1,6 @@
 Hiya, Connector Author 👋
 
-Use this handy template to generate a README for your open source Hasura Data Connector.
+Use these handy markdown template pages to generate documentation for your open source Hasura Data Connector.
 
 It's designed to help your users get going as quickly as possible with your connector and is comprised of this 
 README.md and a number of sub-documents in the `docs` directory. You should edit them as you see fit. 
