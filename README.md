@@ -1,11 +1,11 @@
-_Hiya, Connector Author 👋_
+_Hiya, Data Connector Author 👋_
 
-_Use these handy markdown template pages to generate documentation for your open source Hasura Data Connector._
+_Use these handy markdown template pages to generate user documentation for your open source Hasura Data Connector._
 
 _It's designed to help your users get going as quickly as possible with your connector and is comprised of this 
 README.md and a number of sub-documents in the `docs` directory. You should edit them as you see fit._ 
 
-_Look out for the inline comments, which aren't rendered, to help you fill in the blanks._
+_Look out for the inline comments in these pages, which aren't rendered, to help you fill in the blanks._
 
 _To list your connector on the Hasura Connector Hub, you should make a PR to the 
 [Hasura NDC Hub](https://github.com/hasura/ndc-hub) repo._
@@ -119,7 +119,7 @@ row -->
 The steps below explain how to Initialize and configure a connector for local development. You can learn how to deploy a
 connector — after it's been configured — [here](https://hasura.io/docs/3.0/getting-started/deployment/deploy-a-connector).
 
-## Using the [NAME] connector
+## Using the [connectorName] connector
 
 ### Step 1: Authenticate your CLI session
 
@@ -127,23 +127,34 @@ connector — after it's been configured — [here](https://hasura.io/docs/3.0/g
 ddn auth login
 ```
 
-### Step 2: Initialize the connector
+### Step 2: Configure the connector
+
+Once you have an initialized supergraph and subgraph, run the initialization command in interactive mode:
 
 ```bash
 ddn connector init <connector-name> -i
 ```
 
-[//]: # (### Step 3: Choose the [connectorName] from the list)
+#### Step 2.1: Choose the [connectorName] from the list
+<!-- Let your users know which name to choose from the list of connectors -->
 
-[//]: # ()
-[//]: # (### Step 4 Choose a name for the connector)
+#### Step 2.2 Choose a name for the connector
+<!-- Provide a good default name for your connector -->
 
-[//]: # ()
-[//]: # (### Step 5: Choose a port for the connector)
+#### Step 2.3: Choose a port for the connector
 
-[//]: # ()
-[//]: # (### Step 6: Provide the [name] env var&#40;s&#41; for the connector)
+The CLI will ask for a specific port to run the connector on. Choose a port that is not already in use or use the 
+default suggested port.
 
+#### Step 2.4: Provide the [name] env var(s) for the connector
+
+<!-- Instruct your users on how to provide the necessary environment variables that the connector requires. Include-->
+
+| Name          | Description                                                                                                                                       |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| ConnectionURI | The connection string for the SuperBlazingFastDB™ database. You can find this on your [connection tab](http://www.example.com/) of your instance. |
+| AnotherVar    | Etc...                                                                                                                                            |
+  
 
 ## Documentation
 <!-- TODO: Either on GitHub in this repo or on your own site -->
