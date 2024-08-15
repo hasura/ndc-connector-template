@@ -130,14 +130,16 @@ ddn auth login
 ### Step 2: Initialize the connector
 
 ```bash
-ddn connector init <connector-name>  --subgraph my_subgraph/subgraph.yaml  --hub-connector hasura/<connector>
+ddn connector init <connector-name> -i
 ```
 
-### Step n: Do more things...
-<!-- TODO: Document your connector well :) 
-See the documentation for the getting started with DDN [here](https://hasura.io/docs/3.0/getting-started/overview), 
-which can help you author these steps.
--->
+### Step 3: Choose the [connectorName] from the list
+
+### Step 4 Choose a name for the connector
+
+### Step 5: Choose a port for the connector
+
+### Step 6: Provide the [name] env var(s) for the connector
 
 
 ## Documentation
