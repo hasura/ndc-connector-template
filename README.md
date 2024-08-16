@@ -147,7 +147,8 @@ default suggested port.
 #### Step 2.3: Provide the [name] env var(s) for the connector
 
 <!-- Instruct your users on how to provide the necessary environment variables that the connector requires. Include 
-where to find them -->
+where to find them. Also, if applicable, provide default read-only connection credentials that a testing user can 
+use without needing to set up an instance of the source. -->
 
 | Name          | Description                                                                                                                                       |
 |---------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
